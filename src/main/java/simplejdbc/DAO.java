@@ -179,7 +179,7 @@ public List<String> ListeCodeEtats () throws DAOException {
 			try (ResultSet rs = stmt.executeQuery()) {
 				while (rs.next()) { // Tant qu'il y a des enregistrements
 					// On récupère les champs nécessaires de l'enregistrement courant
-					int state = rs.getInt("STATE");
+					String state = rs.getString("STATE");
 					// On l'ajoute à la liste des résultats
 					result.add("state");
 				}
