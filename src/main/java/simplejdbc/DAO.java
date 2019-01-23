@@ -169,19 +169,21 @@ public class DAO {
 		return result;
 
 	}
+        
 public List<String> ListeCodeEtats () throws DAOException {
 		List<String> result = new LinkedList<>(); // Liste vIde
 
-		String sql = "SELECT DISTINCT STATE FROM APP.CUSTOMER;";
+		String sql = "SELECT DISTINCT STATE FROM CUSTOMER";
 		try (Connection connection = myDataSource.getConnection();
-			PreparedStatement stmt = connection.prepareStatement(sql)) {
+			Statement stmt = connection.createStatement();
+                    ){
 
-			try (ResultSet rs = stmt.executeQuery()) {
+			try (ResultSet rs = stmt.executeQuery(sql)) {
 				while (rs.next()) { // Tant qu'il y a des enregistrements
 					// On récupère les champs nécessaires de l'enregistrement courant
 					String state = rs.getString("STATE");
 					// On l'ajoute à la liste des résultats
-					result.add("state");
+					result.add(state);
 				}
 			}
 		}  catch (SQLException ex) {
